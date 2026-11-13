@@ -1,0 +1,406 @@
+{
+  "_disclaimer": "All vessels, barges, cargo, facilities, terminals, berths, events, identifiers, and data in this file are entirely fictional. This dataset is a simulation for engineering demonstration purposes only. It does not represent real vessels, operational records, actual port facilities, or real cargo manifests. It has no affiliation with or endorsement by the Port of New Orleans or any actual port operator.",
+  "vessels": [
+    {
+      "id": "VSL-001",
+      "name": "MV Delta Star",
+      "imo": "IMO9876543",
+      "mmsi": "338901234",
+      "call_sign": "WDST",
+      "flag_country": "US",
+      "kind": "freighter",
+      "owner": "Gulf Coast Shipping LLC",
+      "length_m": 185.0,
+      "draft_m": 9.5
+    },
+    {
+      "id": "VSL-002",
+      "name": "MT Crescent Tide",
+      "imo": "IMO9765432",
+      "mmsi": "636091234",
+      "call_sign": "ELCT2",
+      "flag_country": "LR",
+      "kind": "tanker",
+      "owner": "Crescent Marine Holdings",
+      "length_m": 228.0,
+      "draft_m": 12.1
+    },
+    {
+      "id": "VSL-003",
+      "name": "MV Pelican Pride",
+      "imo": "IMO9654321",
+      "mmsi": "241091456",
+      "call_sign": "SVPP",
+      "flag_country": "GR",
+      "kind": "bulker",
+      "owner": "Aegean Bulk Transport S.A.",
+      "length_m": 210.0,
+      "draft_m": 11.4
+    },
+    {
+      "id": "VSL-004",
+      "name": "OSV Bayou Runner",
+      "imo": "IMO9543210",
+      "mmsi": "338901567",
+      "call_sign": "WOBR",
+      "flag_country": "US",
+      "kind": "osv",
+      "owner": "Offshore Logistics Partners",
+      "length_m": 65.0,
+      "draft_m": 3.8
+    },
+    {
+      "id": "VSL-005",
+      "name": "TB Mississippi Queen",
+      "imo": "IMO9432109",
+      "mmsi": "338901678",
+      "call_sign": "WOMQ",
+      "flag_country": "US",
+      "kind": "towboat",
+      "owner": "River Freight Services Inc.",
+      "length_m": 42.0,
+      "draft_m": 2.4
+    },
+    {
+      "id": "VSL-006",
+      "name": "MT Gulf Meridian",
+      "imo": "IMO9321098",
+      "mmsi": "352091789",
+      "call_sign": "HPGM",
+      "flag_country": "PA",
+      "kind": "tanker",
+      "owner": "Pan-Gulf Petroleum Transport",
+      "length_m": 274.0,
+      "draft_m": 14.2
+    }
+  ],
+  "barges": [
+    {
+      "id": "BGE-001",
+      "name": "RFS-101",
+      "owner": "River Freight Services Inc.",
+      "capacity_mt": 1500.0,
+      "capability": "dry_bulk",
+      "length_m": 61.0
+    },
+    {
+      "id": "BGE-002",
+      "name": "RFS-102",
+      "owner": "River Freight Services Inc.",
+      "capacity_mt": 1500.0,
+      "capability": "dry_bulk",
+      "length_m": 61.0
+    },
+    {
+      "id": "BGE-003",
+      "name": "RFS-201",
+      "owner": "River Freight Services Inc.",
+      "capacity_mt": 1200.0,
+      "capability": "covered",
+      "length_m": 55.0
+    },
+    {
+      "id": "BGE-004",
+      "name": "GCT-301",
+      "owner": "Gulf Coast Tank Lines",
+      "capacity_mt": 2000.0,
+      "capability": "liquid_bulk",
+      "length_m": 70.0
+    }
+  ],
+  "tows": [
+    {
+      "id": "TOW-001",
+      "name": "MQ Downriver Run 1",
+      "towboat_id": "VSL-005",
+      "barge_ids": ["BGE-001", "BGE-002", "BGE-003"]
+    },
+    {
+      "id": "TOW-002",
+      "name": "MQ Tank Haul",
+      "towboat_id": "VSL-005",
+      "barge_ids": ["BGE-004"]
+    }
+  ],
+  "cargo": [
+    {
+      "id": "CGO-001",
+      "commodity": "grain",
+      "origin": "St. Louis, MO",
+      "destination": "Rotterdam, Netherlands",
+      "vessel_id": "VSL-001",
+      "weight_mt": 12500.0,
+      "notes": "Soft red winter wheat, export grade"
+    },
+    {
+      "id": "CGO-002",
+      "commodity": "petroleum",
+      "origin": "Houston, TX",
+      "destination": "New Orleans, LA",
+      "vessel_id": "VSL-002",
+      "weight_mt": 42000.0,
+      "notes": "Crude oil, West Texas Intermediate grade (fictional)"
+    },
+    {
+      "id": "CGO-003",
+      "commodity": "soybeans",
+      "origin": "Memphis, TN",
+      "destination": "Shanghai, China",
+      "vessel_id": "VSL-003",
+      "weight_mt": 35000.0
+    },
+    {
+      "id": "CGO-004",
+      "commodity": "steel",
+      "origin": "Taranto, Italy",
+      "destination": "New Orleans, LA",
+      "vessel_id": "VSL-001",
+      "weight_mt": 4200.0,
+      "notes": "Structural steel coils"
+    },
+    {
+      "id": "CGO-005",
+      "commodity": "fertilizer",
+      "origin": "Baton Rouge, LA",
+      "destination": "Cairo, Egypt",
+      "barge_id": "BGE-001",
+      "weight_mt": 1400.0,
+      "notes": "Diammonium phosphate"
+    },
+    {
+      "id": "CGO-006",
+      "commodity": "grain",
+      "origin": "Kansas City, MO",
+      "destination": "Veracruz, Mexico",
+      "barge_id": "BGE-002",
+      "weight_mt": 1480.0
+    },
+    {
+      "id": "CGO-007",
+      "commodity": "chemicals",
+      "origin": "Texas City, TX",
+      "destination": "New Orleans, LA",
+      "barge_id": "BGE-004",
+      "weight_mt": 1850.0,
+      "notes": "Caustic soda solution, hazmat class 8 (fictional)"
+    },
+    {
+      "id": "CGO-008",
+      "commodity": "petroleum",
+      "origin": "Port Fourchon, LA",
+      "destination": "Pascagoula, MS",
+      "vessel_id": "VSL-006",
+      "weight_mt": 68000.0,
+      "notes": "Refined petroleum products"
+    }
+  ],
+  "facilities": [
+    {
+      "id": "FAC-001",
+      "name": "Crescent Commercial Terminal",
+      "kind": "commercial"
+    },
+    {
+      "id": "FAC-002",
+      "name": "Bayou Industrial Complex",
+      "kind": "industrial"
+    },
+    {
+      "id": "FAC-003",
+      "name": "Gulf Service Station Alpha",
+      "kind": "service"
+    }
+  ],
+  "terminals": [
+    {
+      "id": "TRM-001",
+      "name": "CCT North Grain Terminal",
+      "facility_id": "FAC-001"
+    },
+    {
+      "id": "TRM-002",
+      "name": "CCT South General Cargo",
+      "facility_id": "FAC-001"
+    },
+    {
+      "id": "TRM-003",
+      "name": "BIC Petroleum Terminal",
+      "facility_id": "FAC-002"
+    },
+    {
+      "id": "TRM-004",
+      "name": "BIC Bulk Liquids Dock",
+      "facility_id": "FAC-002"
+    },
+    {
+      "id": "TRM-005",
+      "name": "GSSA OSV Dock",
+      "facility_id": "FAC-003"
+    },
+    {
+      "id": "TRM-006",
+      "name": "GSSA River Barge Dock",
+      "facility_id": "FAC-003"
+    }
+  ],
+  "berths": [
+    {
+      "id": "BTH-001",
+      "name": "CCT-N Berth 1",
+      "terminal_id": "TRM-001",
+      "max_draft_m": 11.0,
+      "max_length_m": 220.0
+    },
+    {
+      "id": "BTH-002",
+      "name": "CCT-N Berth 2",
+      "terminal_id": "TRM-001",
+      "max_draft_m": 11.0,
+      "max_length_m": 220.0
+    },
+    {
+      "id": "BTH-003",
+      "name": "CCT-S Berth 1",
+      "terminal_id": "TRM-002",
+      "max_draft_m": 10.0,
+      "max_length_m": 190.0
+    },
+    {
+      "id": "BTH-004",
+      "name": "CCT-S Berth 2",
+      "terminal_id": "TRM-002",
+      "max_draft_m": 10.0,
+      "max_length_m": 190.0
+    },
+    {
+      "id": "BTH-005",
+      "name": "BIC Petroleum Berth 1",
+      "terminal_id": "TRM-003",
+      "max_draft_m": 14.5,
+      "max_length_m": 280.0
+    },
+    {
+      "id": "BTH-006",
+      "name": "BIC Petroleum Berth 2",
+      "terminal_id": "TRM-003",
+      "max_draft_m": 14.5,
+      "max_length_m": 280.0
+    },
+    {
+      "id": "BTH-007",
+      "name": "BIC Bulk Liquids Berth 1",
+      "terminal_id": "TRM-004",
+      "max_draft_m": 12.0,
+      "max_length_m": 240.0
+    },
+    {
+      "id": "BTH-008",
+      "name": "GSSA OSV Berth A",
+      "terminal_id": "TRM-005",
+      "max_draft_m": 5.0,
+      "max_length_m": 80.0
+    },
+    {
+      "id": "BTH-009",
+      "name": "GSSA OSV Berth B",
+      "terminal_id": "TRM-005",
+      "max_draft_m": 5.0,
+      "max_length_m": 80.0
+    },
+    {
+      "id": "BTH-010",
+      "name": "GSSA River Barge Dock 1",
+      "terminal_id": "TRM-006",
+      "max_draft_m": 4.0,
+      "max_length_m": 240.0
+    }
+  ],
+  "events": [
+    {
+      "id": "EVT-001",
+      "event_type": "arrival",
+      "vessel_id": "VSL-001",
+      "facility_id": "FAC-001",
+      "occurred_at": "2026-10-20T06:15:00Z",
+      "notes": "MV Delta Star arrived from Baltimore with steel coils"
+    },
+    {
+      "id": "EVT-002",
+      "event_type": "berth_assignment",
+      "vessel_id": "VSL-001",
+      "facility_id": "FAC-001",
+      "berth_id": "BTH-003",
+      "cargo_ids": ["CGO-004"],
+      "occurred_at": "2026-10-20T08:00:00Z"
+    },
+    {
+      "id": "EVT-003",
+      "event_type": "unload_start",
+      "vessel_id": "VSL-001",
+      "facility_id": "FAC-001",
+      "berth_id": "BTH-003",
+      "cargo_ids": ["CGO-004"],
+      "occurred_at": "2026-10-20T09:30:00Z"
+    },
+    {
+      "id": "EVT-004",
+      "event_type": "arrival",
+      "vessel_id": "VSL-002",
+      "facility_id": "FAC-002",
+      "occurred_at": "2026-10-21T14:00:00Z",
+      "notes": "MT Crescent Tide inbound from Houston"
+    },
+    {
+      "id": "EVT-005",
+      "event_type": "berth_assignment",
+      "vessel_id": "VSL-002",
+      "facility_id": "FAC-002",
+      "berth_id": "BTH-005",
+      "cargo_ids": ["CGO-002"],
+      "occurred_at": "2026-10-21T15:30:00Z"
+    },
+    {
+      "id": "EVT-006",
+      "event_type": "arrival",
+      "vessel_id": "VSL-003",
+      "facility_id": "FAC-001",
+      "occurred_at": "2026-10-22T07:45:00Z",
+      "notes": "MV Pelican Pride inbound to load soybeans for export"
+    },
+    {
+      "id": "EVT-007",
+      "event_type": "berth_assignment",
+      "vessel_id": "VSL-003",
+      "facility_id": "FAC-001",
+      "berth_id": "BTH-001",
+      "cargo_ids": ["CGO-003"],
+      "occurred_at": "2026-10-22T09:00:00Z"
+    },
+    {
+      "id": "EVT-008",
+      "event_type": "arrival",
+      "tow_id": "TOW-001",
+      "vessel_id": "VSL-005",
+      "facility_id": "FAC-003",
+      "occurred_at": "2026-10-23T05:30:00Z",
+      "notes": "Mississippi Queen tow arrived from upriver with grain and fertilizer"
+    },
+    {
+      "id": "EVT-009",
+      "event_type": "departure",
+      "vessel_id": "VSL-004",
+      "facility_id": "FAC-003",
+      "occurred_at": "2026-10-23T11:00:00Z",
+      "notes": "OSV Bayou Runner departing for offshore platform supply run"
+    },
+    {
+      "id": "EVT-010",
+      "event_type": "departure",
+      "vessel_id": "VSL-001",
+      "facility_id": "FAC-001",
+      "occurred_at": "2026-10-24T16:30:00Z",
+      "cargo_ids": ["CGO-001"],
+      "notes": "MV Delta Star departing loaded with grain for Rotterdam"
+    }
+  ]
+}

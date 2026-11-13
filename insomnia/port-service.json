@@ -1,0 +1,177 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-10-26",
+  "__export_source": "port-simulation",
+  "resources": [
+    {
+      "_id": "wrk_port_service",
+      "_type": "workspace",
+      "name": "New Orleans Port Information Service",
+      "description": "Fictional port data API — engineering demonstration only. All data is simulated."
+    },
+    {
+      "_id": "env_base",
+      "_type": "environment",
+      "parentId": "wrk_port_service",
+      "name": "Base (SPIFFE-off, loopback)",
+      "data": {
+        "base_url": "http://localhost:8080",
+        "api_prefix": "/api/v1"
+      }
+    },
+    {
+      "_id": "req_health_live",
+      "_type": "request",
+      "parentId": "wrk_port_service",
+      "name": "GET /health/live",
+      "method": "GET",
+      "url": "{{ _.base_url }}{{ _.api_prefix }}/health/live"
+    },
+    {
+      "_id": "req_health_ready",
+      "_type": "request",
+      "parentId": "wrk_port_service",
+      "name": "GET /health/ready",
+      "method": "GET",
+      "url": "{{ _.base_url }}{{ _.api_prefix }}/health/ready"
+    },
+    {
+      "_id": "req_vessels_list",
+      "_type": "request",
+      "parentId": "wrk_port_service",
+      "name": "GET /vessels",
+      "method": "GET",
+      "url": "{{ _.base_url }}{{ _.api_prefix }}/vessels",
+      "parameters": [
+        {"name": "limit", "value": "20", "disabled": true},
+        {"name": "kind", "value": "tanker", "disabled": true},
+        {"name": "flag_country", "value": "US", "disabled": true}
+      ]
+    },
+    {
+      "_id": "req_vessel_by_id",
+      "_type": "request",
+      "parentId": "wrk_port_service",
+      "name": "GET /vessels/:id",
+      "method": "GET",
+      "url": "{{ _.base_url }}{{ _.api_prefix }}/vessels/VSL-001"
+    },
+    {
+      "_id": "req_arrivals",
+      "_type": "request",
+      "parentId": "wrk_port_service",
+      "name": "GET /arrivals",
+      "method": "GET",
+      "url": "{{ _.base_url }}{{ _.api_prefix }}/arrivals",
+      "parameters": [
+        {"name": "facility_id", "value": "FAC-001", "disabled": true},
+        {"name": "since", "value": "2026-10-20T00:00:00Z", "disabled": true}
+      ]
+    },
+    {
+      "_id": "req_departures",
+      "_type": "request",
+      "parentId": "wrk_port_service",
+      "name": "GET /departures",
+      "method": "GET",
+      "url": "{{ _.base_url }}{{ _.api_prefix }}/departures"
+    },
+    {
+      "_id": "req_barges_list",
+      "_type": "request",
+      "parentId": "wrk_port_service",
+      "name": "GET /barges",
+      "method": "GET",
+      "url": "{{ _.base_url }}{{ _.api_prefix }}/barges",
+      "parameters": [
+        {"name": "capability", "value": "dry_bulk", "disabled": true}
+      ]
+    },
+    {
+      "_id": "req_barge_by_id",
+      "_type": "request",
+      "parentId": "wrk_port_service",
+      "name": "GET /barges/:id",
+      "method": "GET",
+      "url": "{{ _.base_url }}{{ _.api_prefix }}/barges/BGE-001"
+    },
+    {
+      "_id": "req_tows_list",
+      "_type": "request",
+      "parentId": "wrk_port_service",
+      "name": "GET /tows",
+      "method": "GET",
+      "url": "{{ _.base_url }}{{ _.api_prefix }}/tows"
+    },
+    {
+      "_id": "req_cargo_list",
+      "_type": "request",
+      "parentId": "wrk_port_service",
+      "name": "GET /cargo",
+      "method": "GET",
+      "url": "{{ _.base_url }}{{ _.api_prefix }}/cargo",
+      "parameters": [
+        {"name": "commodity", "value": "petroleum", "disabled": true},
+        {"name": "vessel_id", "value": "VSL-001", "disabled": true}
+      ]
+    },
+    {
+      "_id": "req_cargo_by_id",
+      "_type": "request",
+      "parentId": "wrk_port_service",
+      "name": "GET /cargo/:id",
+      "method": "GET",
+      "url": "{{ _.base_url }}{{ _.api_prefix }}/cargo/CGO-001"
+    },
+    {
+      "_id": "req_facilities_list",
+      "_type": "request",
+      "parentId": "wrk_port_service",
+      "name": "GET /facilities",
+      "method": "GET",
+      "url": "{{ _.base_url }}{{ _.api_prefix }}/facilities"
+    },
+    {
+      "_id": "req_terminals_list",
+      "_type": "request",
+      "parentId": "wrk_port_service",
+      "name": "GET /terminals",
+      "method": "GET",
+      "url": "{{ _.base_url }}{{ _.api_prefix }}/terminals",
+      "parameters": [
+        {"name": "facility_id", "value": "FAC-001", "disabled": true}
+      ]
+    },
+    {
+      "_id": "req_berths_list",
+      "_type": "request",
+      "parentId": "wrk_port_service",
+      "name": "GET /berths",
+      "method": "GET",
+      "url": "{{ _.base_url }}{{ _.api_prefix }}/berths",
+      "parameters": [
+        {"name": "terminal_id", "value": "TRM-001", "disabled": true}
+      ]
+    },
+    {
+      "_id": "req_vessel_not_found",
+      "_type": "request",
+      "parentId": "wrk_port_service",
+      "name": "GET /vessels/:id — Not Found",
+      "method": "GET",
+      "url": "{{ _.base_url }}{{ _.api_prefix }}/vessels/VSL-999"
+    },
+    {
+      "_id": "req_bad_kind_filter",
+      "_type": "request",
+      "parentId": "wrk_port_service",
+      "name": "GET /vessels — Invalid kind (400)",
+      "method": "GET",
+      "url": "{{ _.base_url }}{{ _.api_prefix }}/vessels",
+      "parameters": [
+        {"name": "kind", "value": "zeppelin"}
+      ]
+    }
+  ]
+}

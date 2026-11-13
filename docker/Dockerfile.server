@@ -1,0 +1,25 @@
+# syntax=docker/dockerfile:1
+
+# --- Build stage ---
+FROM golang:1.24 AS builder
+
+WORKDIR /src
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
+    go build -trimpath -ldflags="-s -w" -o /out/server ./cmd/server
+
+# --- Runtime stage ---
+# Chainguard static — minimal, non-root, distroless.
+# Pin the digest in production to prevent supply-chain drift.
+# Current digest as of 2026-10-26; update with `docker pull cgr.dev/chainguard/static:latest`.
+FROM cgr.dev/chainguard/static:latest
+
+# Non-root UID/GID 65532 (Chainguard nonroot convention)
+USER 65532:65532
+
+COPY --from=builder /out/server /server
+
+ENTRYPOINT ["/server"]

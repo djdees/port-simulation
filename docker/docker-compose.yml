@@ -1,0 +1,66 @@
+# Docker Compose configuration for the New Orleans Port Information Service.
+#
+# This file does NOT deploy SPIRE. It requires an externally managed SPIRE Agent
+# whose Workload API socket is bind-mounted into the containers via SPIFFE_SOCKET.
+#
+# Required environment variables (set in shell or .env — never commit secrets):
+#   SPIFFE_SOCKET           Absolute path to the SPIRE Agent Workload API socket
+#   PORT_AUTH_POLICY_FILE   Absolute path to the JSON authorization policy file
+#   PORT_SERVER_SPIFFE_ID   Server SPIFFE ID (e.g. spiffe://port.example.test/ns/demo/sa/server)
+#
+# Start server:   make compose-up
+# Run client:     make compose-client ARGS="query arrivals"
+# Validate only:  SPIFFE_SOCKET=/tmp/spire-agent.sock \
+#                 PORT_AUTH_POLICY_FILE=/path/to/policy.json \
+#                 PORT_SERVER_SPIFFE_ID=spiffe://port.example.test/ns/demo/sa/server \
+#                 docker compose -f docker/docker-compose.yml config --quiet
+
+services:
+  server:
+    image: port-server:latest
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.server
+    environment:
+      PORT_SERVER_LISTEN: "0.0.0.0:8443"
+      PORT_SPIFFE_ENABLED: "true"
+      SPIFFE_ENDPOINT_SOCKET: "unix:///run/spire/sockets/agent.sock"
+      PORT_AUTH_POLICY: "/run/config/authorization-policy.json"
+    ports:
+      - "8443:8443"
+    volumes:
+      # Workload API socket — provided by an external SPIRE Agent
+      - type: bind
+        source: "${SPIFFE_SOCKET}"
+        target: /run/spire/sockets/agent.sock
+      # Authorization policy file
+      - type: bind
+        source: "${PORT_AUTH_POLICY_FILE}"
+        target: /run/config/authorization-policy.json
+        read_only: true
+    networks:
+      - port-net
+    restart: unless-stopped
+
+  client:
+    image: port-client:latest
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.client
+    environment:
+      PORT_SERVER_URL: "https://server:8443"
+      PORT_SPIFFE_ENABLED: "true"
+      SPIFFE_ENDPOINT_SOCKET: "unix:///run/spire/sockets/agent.sock"
+      PORT_SERVER_SPIFFE_ID: "${PORT_SERVER_SPIFFE_ID}"
+    volumes:
+      - type: bind
+        source: "${SPIFFE_SOCKET}"
+        target: /run/spire/sockets/agent.sock
+    networks:
+      - port-net
+    profiles:
+      - client  # only started explicitly
+
+networks:
+  port-net:
+    driver: bridge
