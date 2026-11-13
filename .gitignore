@@ -1,0 +1,49 @@
+# Binaries
+/bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test output
+*.test
+*.out
+coverage.txt
+coverage.html
+
+# Go build cache (not committed)
+# go.sum IS committed
+
+# Local environment and config
+.env
+.env.*
+*.local
+
+# Secrets and credentials
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+auth-policy.json
+spire-agent.sock
+
+# IDE and editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Docker
+docker/*.env
+
+# Collector output (runtime-generated CSVs)
+collector-output/
+*.csv
+
+# Temporary files
+tmp/
+temp/
